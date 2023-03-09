@@ -5,6 +5,7 @@
 <a href="{% url 'issue_add' %}">Add Issue</a>
 {% endblock %}
 {% block content %}
+{% include 'partials/search.html' with button_text="Find" %}
 {% for issue in issues %}
 <div class="issue_info">
     <p><a href="{% url 'issue_detail' issue.pk %}">{{ issue.summary }}</a></p>

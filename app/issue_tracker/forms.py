@@ -41,3 +41,7 @@ class IssueForm(forms.ModelForm):
             'status': 'Статус',
             'type': 'Тип'
         }
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=200, required=False, label='Найти')

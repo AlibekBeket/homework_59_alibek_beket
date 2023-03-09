@@ -1,16 +1,45 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView
+from django.utils.http import urlencode
+from django.views.generic import TemplateView, ListView
 from issue_tracker.models import Issue, Status, Type
 
 from issue_tracker.forms import IssueForm
 
+from issue_tracker.forms import SearchForm
 
-class IssueTrackerView(TemplateView):
+
+class IssueTrackerView(ListView):
     template_name = 'issue_tracker_list_page.html'
+    model = Issue
+    context_object_name = 'issues'
+    ordering = ('created_at')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['issues'] = Issue.objects.all()
+    def get(self, request, *args, **kwargs):
+        self.form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().get(request, *args, **kwargs)
+
+    def get_search_form(self):
+        return SearchForm(self.request.GET)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search']
+        return None
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            query = Q(summary__icontains=self.search_value) | Q(description__icontains=self.search_value)
+            queryset = queryset.filter(query)
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['form'] = self.form
+        if self.search_value:
+            context['query']: urlencode({'search': self.search_value})
         return context
 
 
