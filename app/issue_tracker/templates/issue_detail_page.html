@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Issue Detail{% endblock %}
+{% block navbar %}
+<a href="{% url 'issues_list' %}">Issue List</a>
+<a href="{% url 'issue_add' %}">Add Issue</a>
+<a href="{% url 'issue_update' issue.pk %}">Update Issue</a>
+<a href="{% url 'issue_delete' issue.pk %}">Delete Issue</a>
+{% endblock %}
+{% block content %}
+<div class="issue_detail_info">
+    <p>Issue summary: <span>{{ issue.summary }}</span></p>
+    <p>Description: <span>{{ issue.description }}</span></p>
+    <p>Type:
+        <span>
+        {% for type in issue.type.all %}
+        {{ type.type_name }}
+        {% endfor %}
+        </span>
+    </p>
+    <p>Status: <span>{{ issue.status.status_name }}</span></p>
+    <p>Created: <span>{{ issue.created_at }} tg</span></p>
+</div>
+{% endblock %}

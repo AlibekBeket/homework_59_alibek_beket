@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Update Issue{% endblock %}
+{% block navbar %}
+<a href="{% url 'issues_list' %}">Issue List</a>
+<a href="{% url 'issue_add' %}">Add Issue</a>
+<a href="{% url 'issue_delete' issue.pk %}">Delete Issue</a>
+{% endblock %}
+{% block content %}
+<h1>Update Issue</h1>
+<div class="form">
+    <form action="{% url 'issue_update' issue.pk %}" method="post">
+        {% include 'partials/issue_form.html' with button_text="Update" %}
+    </form>
+</div>
+{% endblock %}
