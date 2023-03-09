@@ -40,6 +40,8 @@ class IssueTrackerView(ListView):
         context['form'] = self.form
         if self.search_value:
             context['query']: urlencode({'search': self.search_value})
+        if len(context.get('issues')) == 0:
+            context['404_error'] = True
         return context
 
 

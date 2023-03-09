@@ -17,4 +17,9 @@
     <p>Status: {{ issue.status.status_name }}</p>
 </div>
 {% endfor %}
+{% if 404_error %}
+<div class="issue_not_found">
+    <p>Задачи не найдены</p>
+</div>
+{% endif %}
 {% endblock %}

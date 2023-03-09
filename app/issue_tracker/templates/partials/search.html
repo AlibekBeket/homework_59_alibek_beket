@@ -1,6 +1,6 @@
-<form action="{% url 'issues_list' %}" method="get">
+<form class="search_form" action="{% url 'issues_list' %}" method="get">
     {{ form.as_p }}
-    <div class="button_update_or_create">
+    <div class="button_search">
         <input type="submit" value="{{ button_text }}">
     </div>
 </form>

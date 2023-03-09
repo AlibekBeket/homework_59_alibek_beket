@@ -128,3 +128,21 @@ body{
     background: #0B5345;
     color: white;
 }
+.search_form{
+    display: flex;
+    font-size: 20px;
+}
+.button_search input{
+    padding: 0 20px;
+    margin-left: 10px;
+    background: SteelBlue;
+    color: white;
+    border-radius: 5px;
+}
+.button_search input:hover{
+    background: DarkSlateGray;
+    color: White;
+}
+.issue_not_found{
+    padding-top: 20px;
+}
