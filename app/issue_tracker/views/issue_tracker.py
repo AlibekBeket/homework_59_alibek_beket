@@ -61,7 +61,7 @@ class IssueUpdateView(UpdateView):
     model = Issue
 
     def get_success_url(self):
-        return reverse('issue_detail', kwargs={'pk': self.object.pk})
+        return reverse('project_issue_detail', kwargs={'project_pk': self.object.project.pk, 'pk': self.object.pk})
 
 
 class IssueAddView(TemplateView):
