@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
+from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView, CreateView
 from issue_tracker.models import Issue, Status, Type, Project
 
 from issue_tracker.forms import IssueForm
@@ -64,22 +64,22 @@ class IssueUpdateView(UpdateView):
         return reverse('project_issue_detail', kwargs={'project_pk': self.object.project.pk, 'pk': self.object.pk})
 
 
-class IssueAddView(TemplateView):
+class IssueAddView(CreateView):
     template_name = 'issue_create_page.html'
+    model = Issue
+    form_class = IssueForm
+
+    def get(self, request, *args, **kwargs):
+        self.project_pk = kwargs['project_pk']
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['project'] = Project.objects.get(id=kwargs['project_pk'])
-        context['form'] = IssueForm()
+        context['project'] = Project.objects.get(id=self.project_pk)
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = IssueForm(request.POST)
-        if form.is_valid():
-            form.project = kwargs['project_pk']
-            issue = form.save()
-            return redirect('project_detail', project_pk=kwargs['project_pk'])
-        return render(request, 'issue_create_page.html', context={'form': form})
+    def get_success_url(self):
+        return reverse('project_issue_detail', kwargs={'project_pk': self.object.project.pk, 'pk': self.object.pk})
 
 
 class IssueDeleteView(DeleteView):
