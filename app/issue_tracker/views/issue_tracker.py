@@ -69,14 +69,16 @@ class IssueAddView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['project'] = Project.objects.get(id=kwargs['project_pk'])
         context['form'] = IssueForm()
         return context
 
     def post(self, request, *args, **kwargs):
         form = IssueForm(request.POST)
         if form.is_valid():
+            form.project = kwargs['project_pk']
             issue = form.save()
-            return redirect('issue_detail', pk=issue.pk)
+            return redirect('project_detail', project_pk=kwargs['project_pk'])
         return render(request, 'issue_create_page.html', context={'form': form})
 
 

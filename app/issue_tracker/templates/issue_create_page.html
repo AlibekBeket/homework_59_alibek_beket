@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Create Issue{% endblock %}
 {% block navbar_logo %}
-<a href="{% url 'issues_list' %}">Issue Tracker</a>
+<a href="{% url 'project_detail' project.id %}">Issue Tracker</a>
 {% endblock %}
 {% block navbar %}
-<a href="{% url 'issues_list' %}">Issue List</a>
+<a href="{% url 'project_detail' project.id %}">Issue List</a>
 {% endblock %}
 {% block content %}
 <h1>Create Issue</h1>
 <div class="form">
-    <form action="{% url 'issue_add' %}" method="post">
+    <form action="{% url 'project_issue_add' project.id %}" method="post">
         {% include 'partials/issue_form.html' with button_text="Create" %}
     </form>
 </div>
