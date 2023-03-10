@@ -146,3 +146,40 @@ body{
 .issue_not_found{
     padding-top: 20px;
 }
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+.pagination a, .pagination .page-disabled {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 3px;
+}
+.pagination a {
+    background: SteelBlue;
+    text-decoration: none;
+    color: #fffee8;
+}
+.pagination a:hover {
+    background: DarkSlateGray;
+    color: white;
+}
+.page-disabled {
+    background: #6a7dcc;
+    color: #dddddd
+}
+.pagination .current-page {
+    display: inline-block;
+}
+.pagination .current-page input {
+    width: 50px;
+    padding: 2px 7px;
+    font-size: inherit;
+    border-radius: 5px;
+    text-align: center;
+    border: solid 2px gray;
+}
+.bottom_indent{
+    margin-top: 100px;
+}

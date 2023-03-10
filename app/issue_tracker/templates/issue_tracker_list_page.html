@@ -17,9 +17,13 @@
     <p>Status: {{ issue.status.status_name }}</p>
 </div>
 {% endfor %}
+{% if is_paginated %}
+{% include 'partials/pagination.html' %}
+{% endif %}
 {% if 404_error %}
 <div class="issue_not_found">
     <p>Задачи не найдены</p>
 </div>
 {% endif %}
+<div class="bottom_indent"></div>
 {% endblock %}
