@@ -44,4 +44,8 @@ class IssueForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    search = forms.CharField(max_length=200, required=False, label='Найти')
+    search = forms.CharField(
+        max_length=200,
+        required=False,
+        label='Найти'
+    )

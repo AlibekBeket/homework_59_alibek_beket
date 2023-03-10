@@ -35,5 +35,6 @@ class Issue(models.Model):
         blank=True
     )
 
+
     def __str__(self):
         return f"{self.summary} - {self.status}"

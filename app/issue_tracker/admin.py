@@ -35,3 +35,14 @@ class IssueAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Issue, IssueAdmin)
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "description", "start_date", "end_date")
+    list_filter = ("id", "name", "description", "start_date", "end_date")
+    search_fields = ("id", "name", "description")
+    fields = ("name", "description", "start_date", "end_date")
+    readonly_fields = ("id", "start_date", "end_date")
+
+
+admin.site.register(Project, ProjectAdmin)
