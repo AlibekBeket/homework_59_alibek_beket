@@ -31,4 +31,3 @@ class ProjectDeleteView(DeleteView):
     template_name = 'project_delete_page.html'
     model = Project
     success_url = reverse_lazy('projects_list')
-
