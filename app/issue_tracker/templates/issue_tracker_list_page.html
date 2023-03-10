@@ -6,6 +6,7 @@
 {% block navbar %}
 <a href="{% url 'project_detail' project.id %}">Issue List</a>
 <a href="{% url 'project_issue_add' project.id %}">Add Issue</a>
+<a href="{% url 'project_delete' project.id %}">Delete Project</a>
 {% endblock %}
 <h1>{{ project.name }}</h1>
 {% block content %}

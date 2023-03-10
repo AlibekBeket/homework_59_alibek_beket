@@ -4,10 +4,10 @@
 <a href="{% url 'projects_list' %}">Project List</a>
 {% endblock %}
 {% block content %}
-<h1>Create Issue</h1>
+<h1>Project Create</h1>
 <div class="form">
     <form action="{% url 'project_add' %}" method="post">
-        {% include 'partials/issue_form.html' with button_text="Create" %}
+        {% include 'partials/project_form.html' with button_text="Create" %}
     </form>
 </div>
 {% endblock %}

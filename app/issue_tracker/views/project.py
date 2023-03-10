@@ -1,5 +1,5 @@
-from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 
 from issue_tracker.models import Project
 
@@ -24,4 +24,11 @@ class ProjectAddView(CreateView):
     form_class = ProjectForm
 
     def get_success_url(self):
-        return reverse('issue_detail', kwargs={'project_id': self.object.pk})
+        return reverse('projects_list')
+
+
+class ProjectDeleteView(DeleteView):
+    template_name = 'project_delete_page.html'
+    model = Project
+    success_url = reverse_lazy('projects_list')
+
