@@ -34,7 +34,13 @@ class Issue(models.Model):
         verbose_name='Тип',
         blank=True
     )
-
+    project = models.ForeignKey(
+        to='issue_tracker.Project',
+        on_delete=models.PROTECT,
+        related_name='project',
+        verbose_name='Проект',
+        default=2
+    )
 
     def __str__(self):
         return f"{self.summary} - {self.status}"
