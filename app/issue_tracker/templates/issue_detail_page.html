@@ -5,9 +5,9 @@
 {% endblock %}
 {% block navbar %}
 <a href="{% url 'project_detail' issue.project.id %}">Issue List</a>
-<a href="{% url 'issue_add' %}">Add Issue</a>
+<a href="{% url 'project_issue_add' issue.project.id %}">Add Issue</a>
 <a href="{% url 'issue_update' issue.pk %}">Update Issue</a>
-<a href="{% url 'issue_delete' issue.pk %}">Delete Issue</a>
+<a href="{% url 'project_issue_delete' issue.project.id issue.pk %}">Delete Issue</a>
 {% endblock %}
 {% block content %}
 <div class="issue_detail_info">

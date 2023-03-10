@@ -85,4 +85,6 @@ class IssueAddView(TemplateView):
 class IssueDeleteView(DeleteView):
     template_name = 'issue_delete_page.html'
     model = Issue
-    success_url = reverse_lazy('issues_list')
+
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'project_pk': self.object.project.pk})
