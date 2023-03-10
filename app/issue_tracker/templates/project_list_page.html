@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Projects List{% endblock %}
+{% block navbar %}
+<a href="#">Projects List</a>
+<a href="#">Add Project</a>
+{% endblock %}
+{% block content %}
+{% for project in projects %}
+<div class="project_info">
+    <p><a href="#">{{ project.name }}</a></p>
+    <p>Start: {{ project.start_date }}</p>
+</div>
+{% endfor %}
+<div class="bottom_indent"></div>
+{% endblock %}

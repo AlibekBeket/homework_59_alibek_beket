@@ -11,7 +11,8 @@
     <div class="container">
         <ul class="menu logo">
             <li>
-                <a href="{% url 'issues_list' %}">Issue Tracker</a>
+                <a href="{% url 'projects_list' %}">Projects</a>
+                {% block navbar_logo %}{% endblock %}
             </li>
         </ul>
         <ul class="menu link">

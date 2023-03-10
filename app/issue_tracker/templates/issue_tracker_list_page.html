@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Issue Tracker List{% endblock %}
+{% block navbar_logo %}
+<a href="{% url 'issues_list' %}">Issue Tracker</a>
+{% endblock %}
 {% block navbar %}
 <a href="{% url 'issues_list' %}">Issue List</a>
 <a href="{% url 'issue_add' %}">Add Issue</a>
