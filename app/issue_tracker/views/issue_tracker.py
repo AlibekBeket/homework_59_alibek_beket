@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils.http import urlencode
 from django.views.generic import TemplateView, ListView, UpdateView, DetailView, DeleteView
-from issue_tracker.models import Issue, Status, Type
+from issue_tracker.models import Issue, Status, Type, Project
 
 from issue_tracker.forms import IssueForm
 
@@ -21,6 +21,7 @@ class IssueTrackerView(ListView):
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()
         self.search_value = self.get_search_value()
+        self.project_pk = kwargs['project_pk']
         return super().get(request, *args, **kwargs)
 
     def get_search_form(self):
@@ -32,7 +33,7 @@ class IssueTrackerView(ListView):
         return None
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(project=self.project_pk)
         if self.search_value:
             query = Q(summary__icontains=self.search_value) | Q(description__icontains=self.search_value)
             queryset = queryset.filter(query)
@@ -41,6 +42,7 @@ class IssueTrackerView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['form'] = self.form
+        context['project'] = Project.objects.get(id=self.project_pk)
         if self.search_value:
             context['query']: urlencode({'search': self.search_value})
         if len(context.get('issues')) == 0:
@@ -82,4 +84,3 @@ class IssueDeleteView(DeleteView):
     template_name = 'issue_delete_page.html'
     model = Issue
     success_url = reverse_lazy('issues_list')
-

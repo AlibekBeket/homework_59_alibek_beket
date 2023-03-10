@@ -27,10 +27,10 @@ admin.site.register(Status, StatusAdmin)
 
 
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ("id", "summary", "description", "status", "created_at", "updated_at")
-    list_filter = ("id", "summary", "description", "status", "created_at", "updated_at")
-    search_fields = ("id", "summary", "description", "status", "type")
-    fields = ("summary", "description", "status", "type", "created_at", "updated_at")
+    list_display = ("id", "summary", "description", "status", "created_at", "updated_at", "project")
+    list_filter = ("id", "summary", "description", "status", "created_at", "updated_at", "project")
+    search_fields = ("id", "summary", "description", "status", "type", "project")
+    fields = ("summary", "description", "status", "type", "created_at", "updated_at", "project")
     readonly_fields = ("id", "created_at", "updated_at")
 
 

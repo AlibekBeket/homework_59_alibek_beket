@@ -7,7 +7,7 @@
 {% block content %}
 {% for project in projects %}
 <div class="project_info">
-    <p><a href="#">{{ project.name }}</a></p>
+    <p><a href="{% url 'project_detail' project.id %}">{{ project.name }}</a></p>
     <p>Start: {{ project.start_date }}</p>
 </div>
 {% endfor %}
