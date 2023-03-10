@@ -24,6 +24,15 @@ class Project(models.Model):
         blank=True,
         verbose_name='Дата окончания'
     )
+    is_deleted = models.BooleanField(
+        verbose_name="Удалено",
+        null=False,
+        default=False
+    )
 
     def __str__(self):
         return f"{self.name} - {self.start_date}"
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.save()
