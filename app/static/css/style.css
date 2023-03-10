@@ -183,3 +183,16 @@ body{
 .bottom_indent{
     margin-top: 100px;
 }
+.project_info{
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 5px 0 0;
+    background-color: #424949;
+}
+.project_info p a{
+    color: #F0F3F4;
+    text-decoration: none;
+}
+.project_info p a:hover{
+    color: #AED6F1;
+}
