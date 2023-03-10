@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import BaseValidator
-from issue_tracker.models import Issue
+from issue_tracker.models import Issue, Project
 
 
 class CustomMaxLengthValidator(BaseValidator):
@@ -49,3 +49,19 @@ class SearchForm(forms.Form):
         required=False,
         label='Найти'
     )
+
+
+class ProjectForm(forms.ModelForm):
+    name = forms.CharField(
+        validators=(CustomMinLengthValidator(), CustomMaxLengthValidator())
+    )
+
+    class Meta:
+        model = Project
+        fields = ('name', 'description', 'start_date', 'end_date')
+        labels = {
+            'name': 'Имя',
+            'description': 'Описание',
+            'start_date': 'Начало проекта',
+            'end_date': 'Конец проекта'
+        }

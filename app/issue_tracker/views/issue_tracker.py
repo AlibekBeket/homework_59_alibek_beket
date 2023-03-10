@@ -81,6 +81,15 @@ class IssueAddView(CreateView):
     def get_success_url(self):
         return reverse('project_issue_detail', kwargs={'project_pk': self.object.project.pk, 'pk': self.object.pk})
 
+    def post(self, request, *args, **kwargs):
+        form = IssueForm(request.POST)
+        if form.is_valid():
+            issue = form.save()
+            issue.project = Project.objects.get(id=kwargs['project_pk'])
+            issue.save()
+            return reverse('project_issue_detail', kwargs={'project_pk': issue.project.id, 'pk': issue.pk})
+        return render(request, 'issue_create_page.html', context={'form': form})
+
 
 class IssueDeleteView(DeleteView):
     template_name = 'issue_delete_page.html'

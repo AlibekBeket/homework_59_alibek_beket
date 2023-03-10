@@ -1,6 +1,9 @@
-from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, CreateView
 
 from issue_tracker.models import Project
+
+from issue_tracker.forms import ProjectForm
 
 
 class ProjectListView(ListView):
@@ -15,3 +18,10 @@ class ProjectListView(ListView):
         return context
 
 
+class ProjectAddView(CreateView):
+    template_name = 'project_create_page.html'
+    model = Project
+    form_class = ProjectForm
+
+    def get_success_url(self):
+        return reverse('issue_detail', kwargs={'project_id': self.object.pk})
