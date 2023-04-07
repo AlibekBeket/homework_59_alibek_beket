@@ -10,6 +10,8 @@ class ProjectListView(ListView):
     template_name = 'project_list_page.html'
     model = Project
     context_object_name = 'projects'
+    rtwreteewrwtherthetryhyetrhyejyjet = 'wertrewytrewytrgtrgtrgtregt'
+    rtwreteewrwtherthetryhyetrhyejyjet = 'wertrewytrewytrgtrgtrgtregt'
     ordering = ('start_date')
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -22,7 +24,7 @@ class ProjectAddView(CreateView):
     template_name = 'project_create_page.html'
     model = Project
     form_class = ProjectForm
-
+    rtwreteewrwtherthetryhyetrhyejyjet = 'wertrewytrewytrgtrgtrgtregt'
     def get_success_url(self):
         return reverse('projects_list')
 
